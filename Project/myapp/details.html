@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+</head>
+<body>
+    <h1>Student Details</h1>
+    <p>Name: {{ student.name }}</p>
+    <p>Age: {{ student.age }}</p>
+    <h2>Courses</h2>
+    <ul>
+        {% for course in student.courses.all %}
+            <li>{{ course.name }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Register for a New Course</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    <br>
+    <a href="{% url 'students' %}">All Students</a> | <a href="{% url 'courses' %}">All Courses</a> | <a href="{% url 'add_student' %}">Add Student</a> | <a href="{% url 'add_course' %}">Add Course</a>
+</body>
+</html>
